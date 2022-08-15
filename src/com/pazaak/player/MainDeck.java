@@ -1,5 +1,9 @@
 package com.pazaak.player;
 
-enum MainDeck {
+
+public class MainDeck {
+
+    private cardValues cardValues;
+
 
 }
