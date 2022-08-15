@@ -54,9 +54,7 @@ public class Game {
                 }
                 while (dealerStand) {
                     if (GameWatcher.getDealerCardValue() < 20) { // AI will have set rules with Math.rand to force chance
-                        // stand
-                        // skipTurn
-                        // playSideCard
+                        // TODO: implement getChoice() for the AI subclass
                     } else if (GameWatcher.getPlayerCardValue() > 20 && GameWatcher.getDealerCardValue() > 20) {
                         // DO NOTHING, TIED SET
                     } else if (GameWatcher.getDealerCardValue() > 20) {
