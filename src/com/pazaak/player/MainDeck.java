@@ -1,5 +1,5 @@
 package com.pazaak.player;
 
-enum mainDeck {
+enum MainDeck {
 
 }
