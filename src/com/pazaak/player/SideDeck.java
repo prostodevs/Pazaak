@@ -1,8 +1,6 @@
 package com.pazaak.player;
 
-import java.util.List;
-
-public enum sideDeck {
+public enum SideDeck {
 
 
     NEGATIVE_1(-1),
@@ -21,7 +19,7 @@ public enum sideDeck {
 
     private int sideDeck;
 
-    private sideDeck(int value) {
+    private SideDeck(int value) {
         this.sideDeck = value;
     }
 
