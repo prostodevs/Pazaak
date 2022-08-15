@@ -29,6 +29,4 @@ public enum cardValues {
     public int getSideDeckValue() {
         return sideDeckValue;
     }
-
-
 }
