@@ -1,9 +1,11 @@
 package com.pazaak.player;
 
-class User extends Player{
+class User extends Player {
+
+    private cardValues sideDeck;
 
 
-        //Methods
+    //Methods
     @Override
     public void playCard() {
         super.playCard();
@@ -15,8 +17,13 @@ class User extends Player{
     }
 
     @Override
-    public void stay() {
-        super.stay();
+    public void skipTurn() {
+        super.skipTurn();
+    }
+
+    @Override
+    public void playSideCard() {
+        super.playSideCard();
     }
 
     @Override
