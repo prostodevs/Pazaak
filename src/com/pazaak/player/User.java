@@ -2,7 +2,7 @@ package com.pazaak.player;
 
 class User extends Player {
 
-    private cardValues sideDeck;
+    private CardValues sideDeck;
 
 
     //Methods

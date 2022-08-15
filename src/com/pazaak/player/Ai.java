@@ -2,7 +2,7 @@ package com.pazaak.player;
 
 class Ai extends Player {
 
-    private cardValues sideDeck;
+    private CardValues sideDeck;
 
 
     //Methods

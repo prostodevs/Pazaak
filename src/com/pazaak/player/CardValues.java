@@ -1,6 +1,6 @@
 package com.pazaak.player;
 
-public enum cardValues {
+public enum CardValues {
 
     NEGATIVE_1(-1),
     NEGATIVE_2(-2),
@@ -20,13 +20,16 @@ public enum cardValues {
     POSITIVE_9(9),
     POSITIVE_10(10);
 
-    private int sideDeckValue;
+    //Fields
+    private final int cardValue;
 
-    private cardValues(int value) {
-        this.sideDeckValue = value;
+    //Constructors
+    private CardValues(int value) { //gives value of int to enum
+        this.cardValue = value;
     }
 
-    public int getSideDeckValue() {
-        return sideDeckValue;
+    //Methods
+    public int getCardValue() {   //makes enum public with value
+        return cardValue;
     }
 }
