@@ -3,11 +3,11 @@ package com.pazaak.game;
 class GameWatcher {
 
     // static fields that will be shared with other classes within the com.pazaak.game package
-    private static int playerSetWinCount;
-    private static int dealerSetWinCount;
-    private static int playerCardValue;
-    private static int dealerCardValue;
-    private static int turnCount = 1;
+    private static int playerSetWinCount = 0;
+    private static int dealerSetWinCount = 0;
+    private static int playerCardValue = 0;
+    private static int dealerCardValue = 0;
+    private static int turnCount = 0;
 
 
     // constructors
