@@ -27,7 +27,7 @@ public class User extends Player {
     }
 
     @Override
-    public void stand() {
-        super.stand();
+    public boolean stand(boolean stand) {
+        return stand;
     }
 }

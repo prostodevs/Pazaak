@@ -26,8 +26,9 @@ public class Player {
 
     }
 
-    public void stand() {
+    public boolean stand(boolean a) {
         //TODO: commit to current cardValue count. no more plays
+        return a;
     }
 
     public void reset() {
