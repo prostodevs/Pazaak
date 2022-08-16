@@ -1,8 +1,6 @@
 package com.pazaak.game;
 
-import com.pazaak.deck.MainDeck;
 import com.pazaak.player.Ai;
-import com.pazaak.player.Player;
 import com.pazaak.player.User;
 
 import java.io.*;
@@ -14,30 +12,26 @@ public class Game {
     boolean exit = false;
     private final Scanner scanner = new Scanner(System.in); // console input
 
-    //business methods
+    // Primary Game method
     public void execute() {
-
         do {
             // display welcome message
             welcome();
 
-            // Play flow
+            // Game flow controller
             if (play) {
                 User player = new User();
                 Ai dealer = new Ai();
 
-                // TODO: select SideDeck?
-
                 //this while block will repeat for each set
                 while (GameWatcher.getPlayerSetWinCount() != 2 || GameWatcher.getDealerSetWinCount() != 2) {
-                    MainDeck.randomize();
                     int playerIndex = GameWatcher.getTurnCount();
                     int dealerIndex = GameWatcher.getTurnCount() + 1;
 
-                    while (!player.stand(true)) { //TODO: change Stand() to return boolean
+                    while (!player.stand(true)) { //Player turn
                         if (GameWatcher.getPlayerCardValue() < 20) {
-                            player.drawCard(playerIndex);
-                            GameWatcher.setPlayerCardValue(+player.drawCard());//TODO: change drawCard to return Int
+                            player.drawCard(playerIndex); // draws card based on turn
+                            GameWatcher.setPlayerCardValue(+player.drawCard(playerIndex));
                             System.out.println("You're current card total is: " + GameWatcher.getPlayerCardValue());
 
                             boolean validInput = false;
@@ -57,7 +51,7 @@ public class Game {
                                         validInput = true;
                                         break;
                                     case "3":
-                                        player.playCard();
+                                        player.playSideCard();
                                         validInput = true;
                                         break;
                                     default:
@@ -65,16 +59,14 @@ public class Game {
                                 }
                             }
                         } else if (GameWatcher.getPlayerCardValue() > 20) {
-                            GameWatcher.setDealerSetWinCount(+1);
+
                             dealer.stand(true);
                         }
                     }
 
-                    //TODO: Outsource this to the AI object
-                    while (!dealer.stand(false)) {
-                        if (GameWatcher.getDealerCardValue() > 20) { // AI will have set rules with Math.rand to force chance
-                            dealer.stand(true);
-                        } else {
+                    while (!dealer.stand(false)) { //AI turn
+                        if (GameWatcher.getDealerCardValue() > 20) { // Set rules using Math.rand to create 'chance'
+                            dealer.drawCard(dealerIndex); // draws card based on turn
                             int input = dealer.getChoice();
                             switch (input) {
                                 case 1:
@@ -83,25 +75,38 @@ public class Game {
                                 case 2:
                                     break;
                                 case 3:
-                                    dealer.playCard();
+                                    dealer.playSideCard();
+                                    break;
                             }
-
-                            // add win to player win count
-                            GameWatcher.setPlayerSetWinCount(+1);
+                        } else {
+                            dealer.stand(true);
                         }
-
-                        //End of turn counter actions
-                        GameWatcher.setTurnCount(+1);
-                        playerIndex += 1;
-                        dealerIndex += 1;
-                        Player.getReset(); //TODO: Create reset method to run at end of each set
                     }
+
+                    //End of turn counter actions
+                    GameWatcher.setTurnCount(+1);
+                    playerIndex += 1;
+                    dealerIndex += 1;
+
+                    // Block to assign set wins
+                    if (GameWatcher.getPlayerCardValue() > 20) {
+                        GameWatcher.setDealerSetWinCount(+1);
+                        GameWatcher.setReset(); //reset board at end of each set
+                    } else if (GameWatcher.getDealerCardValue() > 20) {
+                        GameWatcher.setPlayerSetWinCount(+1);
+                        GameWatcher.setReset();
+                    } else if (GameWatcher.getPlayerCardValue() > GameWatcher.getDealerCardValue()) {
+                        GameWatcher.setPlayerSetWinCount(+1);
+                        GameWatcher.setReset();
+                    } else if (GameWatcher.getPlayerCardValue() < GameWatcher.getDealerCardValue())
+                        GameWatcher.setDealerSetWinCount(+1);
+                    GameWatcher.setReset();
                 }
-                if (GameWatcher.getPlayerSetWinCount() == 2) {
-                    System.out.println("You won the match!");
-                } else {
-                    System.out.println("You have lost the match.");
-                }
+            }
+            if (GameWatcher.getPlayerSetWinCount() == 2) {
+                System.out.println("You won the match!");
+            } else if (GameWatcher.getDealerSetWinCount() == 2) {
+                System.out.println("You have lost the match.");
             }
 
             // Rule display
@@ -111,10 +116,10 @@ public class Game {
 
             resetWelcome();
         } while (!exit);
-
+        System.out.println("The game will now exit. Thanks for playing!");
     }
 
-
+    // Game Methods
     private void displayRules() {
         try (BufferedReader br = new BufferedReader(new FileReader("data/Rules.txt"))) {
             StringBuilder sb = new StringBuilder();
@@ -127,8 +132,6 @@ public class Game {
             }
             String everything = sb.toString();
             System.out.println(everything);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -169,5 +172,4 @@ public class Game {
         play = false;
         rules = false;
     }
-
 }

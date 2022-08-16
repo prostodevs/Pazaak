@@ -54,4 +54,10 @@ public class GameWatcher {
     public static void setTurnCount(int turnCount) {
         GameWatcher.turnCount = turnCount;
     }
+
+    public static void setReset() {
+        setTurnCount(0);
+        setPlayerCardValue(0);
+        setDealerCardValue(0);
+    }
 }
