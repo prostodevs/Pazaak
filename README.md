@@ -1,5 +1,5 @@
 # Pazaak
-Simple Pazaak game in Java (SDE-07.2022)
+Simple Pazaak game in Java (SDE6-07.2022)
 
 Project Team:
 1. Fabian Tovar
