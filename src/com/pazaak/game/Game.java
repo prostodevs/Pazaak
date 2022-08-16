@@ -30,14 +30,16 @@ public class Game {
 
                 //this while block will repeat for each set
                 while (GameWatcher.getPlayerSetWinCount() != 2 || GameWatcher.getDealerSetWinCount() != 2) {
-                    MainDeck.randomize();
+
+                    //TODO: MainDeck.randomize();
+
                     int playerIndex = GameWatcher.getTurnCount();
                     int dealerIndex = GameWatcher.getTurnCount() + 1;
 
-                    while (!player.stand(true)) { //TODO: change Stand() to return boolean
+                    while (!player.stand(true)) {
                         if (GameWatcher.getPlayerCardValue() < 20) {
-                            player.drawCard(playerIndex);
-                            GameWatcher.setPlayerCardValue(+player.drawCard());//TODO: change drawCard to return Int
+                            player.drawCard(playerIndex); // draws card based on turn
+                            GameWatcher.setPlayerCardValue(+player.drawCard(playerIndex));
                             System.out.println("You're current card total is: " + GameWatcher.getPlayerCardValue());
 
                             boolean validInput = false;
@@ -57,7 +59,7 @@ public class Game {
                                         validInput = true;
                                         break;
                                     case "3":
-                                        player.playCard();
+                                        player.playSideCard();
                                         validInput = true;
                                         break;
                                     default:
@@ -65,16 +67,14 @@ public class Game {
                                 }
                             }
                         } else if (GameWatcher.getPlayerCardValue() > 20) {
-                            GameWatcher.setDealerSetWinCount(+1);
+
                             dealer.stand(true);
                         }
                     }
 
-                    //TODO: Outsource this to the AI object
                     while (!dealer.stand(false)) {
                         if (GameWatcher.getDealerCardValue() > 20) { // AI will have set rules with Math.rand to force chance
-                            dealer.stand(true);
-                        } else {
+                            dealer.drawCard(dealerIndex); // draws card based on turn
                             int input = dealer.getChoice();
                             switch (input) {
                                 case 1:
@@ -83,18 +83,19 @@ public class Game {
                                 case 2:
                                     break;
                                 case 3:
-                                    dealer.playCard();
+                                    dealer.playSideCard();
+                                    break;
                             }
 
-                            // add win to player win count
-                            GameWatcher.setPlayerSetWinCount(+1);
+                        } else {
+                            dealer.stand(true);
                         }
 
                         //End of turn counter actions
                         GameWatcher.setTurnCount(+1);
                         playerIndex += 1;
                         dealerIndex += 1;
-                        Player.getReset(); //TODO: Create reset method to run at end of each set
+                        GameWatcher.setReset(); //reset board at end of each set
                     }
                 }
                 if (GameWatcher.getPlayerSetWinCount() == 2) {

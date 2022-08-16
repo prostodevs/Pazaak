@@ -10,20 +10,10 @@ public class User extends Player {
 
     //Methods
     @Override
-    public void playCard() {
-        super.playCard();
-    }
-
-    @Override
     public int drawCard(int index) {
         int cardValue = MainDeck.getCards().indexOf(index);
 
         return cardValue;
-    }
-
-    @Override
-    public void skipTurn() {
-        super.skipTurn();
     }
 
     @Override

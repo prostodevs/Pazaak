@@ -33,10 +33,6 @@ public class Ai extends Player {
         return choice;
     }
 
-    @Override
-    public void playCard() {
-        super.playCard();
-    }
 
     @Override
     public int drawCard(int index) {
@@ -45,12 +41,7 @@ public class Ai extends Player {
         return cardValue;
     }
 
-    @Override
-    public void skipTurn() {
-        super.skipTurn();
-    }
-
-    @Override
+        @Override
     public void playSideCard() {
         super.playSideCard();
     }
