@@ -1,6 +1,9 @@
 package com.pazaak.player;
 
+import com.pazaak.deck.CardValues;
+
 import com.pazaak.game.GameWatcher;
+
 
 public class Ai extends Player {
 

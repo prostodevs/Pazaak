@@ -1,5 +1,7 @@
 package com.pazaak.player;
 
+import com.pazaak.deck.CardValues;
+
 public class User extends Player {
 
     private CardValues sideDeck;
