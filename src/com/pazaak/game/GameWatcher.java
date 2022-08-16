@@ -1,6 +1,6 @@
 package com.pazaak.game;
 
-class GameWatcher {
+public class GameWatcher {
 
     // static fields that will be shared with other classes within the com.pazaak.game package
     private static int playerSetWinCount = 0;
@@ -12,7 +12,6 @@ class GameWatcher {
 
     // constructors
     public GameWatcher() {
-        super();
     }
 
     // getters/setters
