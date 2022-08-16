@@ -1,4 +1,4 @@
-package com.pazaak.player;
+package com.pazaak.deck;
 
 public enum CardValues {
 

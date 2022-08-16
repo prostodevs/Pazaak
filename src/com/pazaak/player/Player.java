@@ -2,10 +2,12 @@ package com.pazaak.player;
 
 import com.pazaak.game.Game;
 
+import javax.swing.*;
+
 public class Player {
 
-    private Game game = new Game();
-
+    Game game;
+    boolean reset = false;
 
     //Methods
     public void playCard() {
@@ -30,12 +32,16 @@ public class Player {
         //TODO: commit to current cardValue count. no more plays
     }
 
-    public void reset() {
-
+    public void resetGame() {
+//        if (reset) {
+//            this.remove(game);
+//            game = new Game();
+//            this.add(game);
+//            SwingUtilities.updateComponentTreeUI(this);  <-- will generate new game panel, need to implement in Game class
     }
-
-    //input getReset method() to reset game
-
-    //Accessors
-
 }
+
+//input getReset method() to reset game
+
+//Accessors
+

@@ -1,5 +1,7 @@
 package com.pazaak.player;
 
+import com.pazaak.deck.CardValues;
+
 public class Ai extends Player {
 
     private CardValues sideDeck;
