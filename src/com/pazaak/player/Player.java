@@ -1,6 +1,10 @@
 package com.pazaak.player;
 
+import com.pazaak.game.Game;
+
 public class Player {
+
+    private Game game = new Game();
 
 
     //Methods
@@ -25,6 +29,12 @@ public class Player {
     public void stand() {
         //TODO: commit to current cardValue count. no more plays
     }
+
+    public void reset() {
+
+    }
+
+    //input getReset method() to reset game
 
     //Accessors
 
