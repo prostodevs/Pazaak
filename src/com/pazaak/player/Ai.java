@@ -5,6 +5,9 @@ import com.pazaak.deck.CardValues;
 import com.pazaak.deck.MainDeck;
 import com.pazaak.game.GameWatcher;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Ai extends Player {
 
@@ -14,6 +17,7 @@ public class Ai extends Player {
     private int choice;
     private boolean playerStand = false;
     private boolean dealerStand = false;
+    List<CardValues> sideCards;
 
 
     // Methods
@@ -22,15 +26,26 @@ public class Ai extends Player {
             choice = 2;
             System.out.println("Skip");
         } else if (GameWatcher.getDealerCardValue() <= 14 && GameWatcher.getDealerCardValue() < 18) {
-            if (0 == 0) {
-                choice = 0;
+            // for each loop that will iterate through the 4 cards to determine value
+            sideCards = new ArrayList<CardValues>();
+
+            for (CardValues sideCard : sideCards) {
 
             }
+
+
+
+
+//            int cardValueOnBoard = sum(GameWatcher.getDealerCardValue() + sideDeck.getCardValue());
+//            if (cardValueOnBoard <= 0) {
+//                choice = ;
+//
+//            }
 
         }
 
 
-        return choice;
+        return 0;
     }
 
     @Override
