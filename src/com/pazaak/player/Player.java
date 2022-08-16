@@ -14,9 +14,11 @@ public class Player {
         //TODO: play a card
     }
 
-    public void drawCard() {
-        //TODO: draw card from Deck
+    public int drawCard(int index) {
+        int cardValue = 0;
 
+        //TODO: draw card from Deck
+        return cardValue;
     }
 
     public void skipTurn() {

@@ -1,5 +1,6 @@
 package com.pazaak.game;
 
+import com.pazaak.deck.MainDeck;
 import com.pazaak.player.Ai;
 import com.pazaak.player.Player;
 import com.pazaak.player.User;
@@ -29,9 +30,13 @@ public class Game {
 
                 //this while block will repeat for each set
                 while (GameWatcher.getPlayerSetWinCount() != 2 || GameWatcher.getDealerSetWinCount() != 2) {
+                    MainDeck.randomize();
+                    int playerIndex = GameWatcher.getTurnCount();
+                    int dealerIndex = GameWatcher.getTurnCount() + 1;
+
                     while (!player.stand(true)) { //TODO: change Stand() to return boolean
                         if (GameWatcher.getPlayerCardValue() < 20) {
-                            player.drawCard();
+                            player.drawCard(playerIndex);
                             GameWatcher.setPlayerCardValue(+player.drawCard());//TODO: change drawCard to return Int
                             System.out.println("You're current card total is: " + GameWatcher.getPlayerCardValue());
 
@@ -85,7 +90,10 @@ public class Game {
                             GameWatcher.setPlayerSetWinCount(+1);
                         }
 
+                        //End of turn counter actions
                         GameWatcher.setTurnCount(+1);
+                        playerIndex += 1;
+                        dealerIndex += 1;
                         Player.getReset(); //TODO: Create reset method to run at end of each set
                     }
                 }

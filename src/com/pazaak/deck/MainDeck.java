@@ -7,7 +7,7 @@ import java.util.List;
 public class MainDeck extends Card {
 
     //Fields
-    List<Card> cards;
+    public static List<Card> cards;
 
 
     private int deckSize; //size of deck
@@ -22,7 +22,7 @@ public class MainDeck extends Card {
     //Methods
 
 
-    public List<Card> getCards() {
+    public static List<Card> getCards() {
         return cards;
     }
 

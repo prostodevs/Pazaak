@@ -1,6 +1,7 @@
 package com.pazaak.player;
 
 import com.pazaak.deck.CardValues;
+import com.pazaak.deck.MainDeck;
 
 public class User extends Player {
 
@@ -14,8 +15,10 @@ public class User extends Player {
     }
 
     @Override
-    public void drawCard() {
-        super.drawCard();
+    public int drawCard(int index) {
+        int cardValue = MainDeck.getCards().indexOf(index);
+
+        return cardValue;
     }
 
     @Override
