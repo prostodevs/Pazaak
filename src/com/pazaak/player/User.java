@@ -9,7 +9,11 @@ public class User extends Player {
 
     //Methods
 //TODO: add play() method
-//ctor
+    public void play(String... option) {
+
+    }
+
+    //ctor
     public User(List<Card> hand) {
         super(hand);
     }

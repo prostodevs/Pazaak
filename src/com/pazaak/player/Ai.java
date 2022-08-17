@@ -23,6 +23,10 @@ public class Ai extends Player {
     }
 
     // Methods
+    public void play(String... option) {
+
+    }
+
     public int getChoice() {
         if (getCardValue() <= 13) {
             choice = 2;
