@@ -19,15 +19,18 @@ public abstract class Player {
         this.hand = hand;
     }
 
+    public List<Card> getHand() {
+        return hand;
+    }
+
     public abstract void play(String... option);
 
     public void win() {
         winCount++;
     }
 
-    public void reset() {
-        cardValue = 0;
-        cardCount = 0;
+    public int getCardCount() {
+        return cardCount;
     }
 
     public boolean isBusted() {
@@ -42,8 +45,7 @@ public abstract class Player {
         return cardValue;
     }
 
-    //Methods
-    public void drawCard(int index) {
+    public void drawCard() {
         this.cardValue += mainDeck.draw().getValue();
         cardCount++;
     }
@@ -60,5 +62,10 @@ public abstract class Player {
 
     public void setDeck(Deck mainDeck) {
         this.mainDeck = mainDeck;
+    }
+
+    public void reset() {
+        cardValue = 0;
+        cardCount = 0;
     }
 }
