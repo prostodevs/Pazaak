@@ -2,11 +2,11 @@ package com.pazaak.player;
 
 import com.pazaak.deck.Card;
 
-import java.util.Scanner;
 
 import java.util.List;
 
 public class User extends Player {
+
 
     //ctor
     public User(List<Card> hand) {
