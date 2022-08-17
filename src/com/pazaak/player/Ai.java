@@ -1,8 +1,9 @@
 package com.pazaak.player;
 
-import com.pazaak.deck.Card;
-import com.pazaak.deck.CardValue;
-import com.pazaak.deck.Deck;
+import com.pazaak.deck.CardValues;
+
+import com.pazaak.deck.MainDeck;
+import com.pazaak.game.GameWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +13,12 @@ public class Ai extends Player {
 
 
     // Fields
-    private CardValue sideDeck;
+    private CardValues sideDeck;
     private int choice;
     private boolean playerStand = false;
     private boolean dealerStand = false;
+    List<CardValues> sideCards;
 
-
-    public Ai(List<Card> hand) {
-        super(hand);
-    }
 
     // Methods
     public void play(String... option) {
@@ -28,19 +26,20 @@ public class Ai extends Player {
     }
 
     public int getChoice() {
-        if (getCardValue() <= 13) {
+        if (GameWatcher.getDealerCardValue() <= 13) {
             choice = 2;
             System.out.println("Skip");
-        } else if (getCardValue() > 14 && getCardValue() < 20) {
+        } else if (GameWatcher.getDealerCardValue() > 14 && GameWatcher.getDealerCardValue() < 20) {
             // for each loop that will iterate through the 4 cards to determine value
-            sideCards = new ArrayList<CardValue>();
+            sideCards = new ArrayList<CardValues>();
 
-            for (CardValue sideCard : sideCards) {
-                if (sideCards < 20) {
+            for (CardValues sideCard : sideCards) {
+                if (sideCards + GameWatcher.getDealerCardValue()){
                     playSideCard();
                 }
 
             }
+
 
 
 
@@ -57,8 +56,23 @@ public class Ai extends Player {
         return 0;
     }
 
+
+    @Override
+    public int drawCard(int index) {
+        int cardValue = MainDeck.getCards().indexOf(index);
+
+        return cardValue;
+    }
+
         @Override
     public void playSideCard() {
+        super.playSideCard();
+    }
 
-        }
+
+    // set stand method to false
+    @Override
+    public boolean stand(boolean stand) {
+        return stand;
+    }
 }
