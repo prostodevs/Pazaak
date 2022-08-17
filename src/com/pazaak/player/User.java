@@ -8,6 +8,11 @@ import java.util.List;
 
 public class User extends Player {
 
+    //ctor
+    public User(List<Card> hand) {
+        super(hand);
+    }
+
     //Methods
     public void play(String... option) {
         Scanner scanner = new Scanner(System.in);
@@ -39,11 +44,6 @@ public class User extends Player {
                     System.out.println(input + " is an invalid choice.");
             }
         }
-    }
-
-    //ctor
-    public User(List<Card> hand) {
-        super(hand);
     }
 
     @Override

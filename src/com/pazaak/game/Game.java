@@ -44,7 +44,7 @@ public class Game {
                         //Player turn
                         if (!player.isStanding() && !player.isBusted() && player.getCardCount() < 9) {
                             player.play();
-                        } else if (player.getCardValue() > 20) {
+                        } else if (player.isBusted()) {
                             computer.stand();
                         }
 
@@ -54,6 +54,9 @@ public class Game {
                         } else {
                             computer.stand();
                         }
+
+                        if (player.isStanding() && computer.isStanding())
+                            roundOver = true;
                     }
                     determineWinner(player, computer);
                     player.reset();
