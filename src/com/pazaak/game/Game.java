@@ -7,6 +7,7 @@ import com.pazaak.player.Ai;
 import com.pazaak.player.Player;
 import com.pazaak.player.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,7 +22,7 @@ public class Game {
     private final Scanner scanner = new Scanner(System.in); // console input
 
     // Primary Game method
-    public void execute() throws IOException {
+    public void execute() {
         do {
             // display welcome message
             welcome();
@@ -74,9 +75,14 @@ public class Game {
     }
 
     // Game Methods
-    private void displayRules() throws IOException {
-        String rules = Files.readString(Path.of("data/Rules.txt"));
-        System.out.println(); // add buffer space to cmd output
+    private void displayRules() {
+        try {
+            String rules = Files.readString(Path.of("data/Rules.txt"));
+            System.out.println(rules);
+            System.out.println(); // add buffer space to cmd output
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void welcome() {

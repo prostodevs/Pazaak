@@ -2,7 +2,6 @@ package com.pazaak.player;
 
 import com.pazaak.deck.Card;
 
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +13,7 @@ public class Ai<CardValues> extends Player {
         super(hand);
     }
 
+
     //ctor
     public Ai(List<Card> hand) {
         super(hand);
@@ -23,6 +23,10 @@ public class Ai<CardValues> extends Player {
     public void play(String... option) {
         Scanner scanner = new Scanner(System.in);
         drawCard();
+        System.out.println("COMPUTER TOTAL: " + getCardValue());
+        System.out.println("COMPUTER COUNT: " + getCardCount());
+        stand();
+
 
         if (isBusted()) {
             stand();
@@ -35,4 +39,5 @@ public class Ai<CardValues> extends Player {
     public void playSideCard() {
 
         }
+
 }
