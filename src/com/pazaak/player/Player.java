@@ -4,7 +4,6 @@ package com.pazaak.player;
 import com.pazaak.deck.Card;
 import com.pazaak.deck.Deck;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Player {
@@ -39,7 +38,7 @@ public abstract class Player {
         return winCount;
     }
 
-    public int getCardValue() {
+    public static int getCardValue() {
         return cardValue;
     }
 
