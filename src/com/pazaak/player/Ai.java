@@ -1,24 +1,18 @@
 package com.pazaak.player;
 
 import com.pazaak.deck.Card;
-import com.pazaak.deck.CardValues;
 
-import com.pazaak.deck.MainDeck;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
-public class Ai extends Player {
+public class Ai<CardValues> extends Player {
 
-
-    // Fields
-    private CardValues sideDeck;
-    private int choice;
-    private boolean playerStand = false;
-    private boolean dealerStand = false;
-    List<CardValues> sideCards;
-
+    // Constructor
+    public Ai(List<Card> hand) {
+        super(hand);
+    }
 
     //ctor
     public Ai(List<Card> hand) {
@@ -27,48 +21,18 @@ public class Ai extends Player {
 
     // Methods
     public void play(String... option) {
+        Scanner scanner = new Scanner(System.in);
         drawCard();
 
-    }
-
-    public int getChoice() {
-        if (GameWatcher.getDealerCardValue() <= 13) {
-            choice = 2;
-            System.out.println("Skip");
-        } else if (GameWatcher.getDealerCardValue() > 14 && GameWatcher.getDealerCardValue() < 20) {
-            // for each loop that will iterate through the 4 cards to determine value
-            sideCards = new ArrayList<CardValues>();
-
-            for (CardValues sideCard : sideCards) {
-                if (sideCards + GameWatcher.getDealerCardValue()){
-                    playSideCard();
-                }
-
-            }
-
-
-
-
-
-//            int cardValueOnBoard = sum(GameWatcher.getDealerCardValue() + sideDeck.getCardValue());
-//            if (cardValueOnBoard <= 0) {
-//                choice = ;
-//
-//            }
-
-        }
-
-
-        return 0;
-    }
-
-
-
+        if (isBusted()) {
+            stand();
+        } else if (getCardValue() <= 0) {
+            playSideCard();
+        } else (getCardValue() <= 13 || getCardValue() <= 19) {
+            playSideCard();
 
         @Override
     public void playSideCard() {
 
         }
-
-
 }
