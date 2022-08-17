@@ -2,7 +2,6 @@ package com.pazaak.player;
 
 import com.pazaak.deck.Card;
 
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,11 +13,6 @@ public class Ai<CardValues> extends Player {
         super(hand);
     }
 
-    //ctor
-    public Ai(List<Card> hand) {
-        super(hand);
-    }
-
     // Methods
     public void play(String... option) {
         Scanner scanner = new Scanner(System.in);
@@ -26,13 +20,14 @@ public class Ai<CardValues> extends Player {
 
         if (isBusted()) {
             stand();
-        } else if (getCardValue() <= 0) {
+        } else if (getCardValue() <= 13) {
+            System.out.println();
+        } else if (getCardValue() > 13 && getCardValue() <= 19) {
             playSideCard();
-        } else (getCardValue() <= 13 || getCardValue() <= 19) {
-            playSideCard();
-
-        @Override
-    public void playSideCard() {
-
         }
+    }
+
+    @Override
+    public void playSideCard() {
+    }
 }
