@@ -5,9 +5,6 @@ import com.pazaak.deck.MainDeck;
 
 public class User extends Player {
 
-    private CardValues sideDeck;
-
-
     //Methods
     @Override
     public int drawCard(int index) {
