@@ -4,6 +4,7 @@ import com.pazaak.deck.Card;
 
 
 import java.util.List;
+import java.util.Scanner;
 
 public class User extends Player {
 
