@@ -7,7 +7,9 @@ import com.pazaak.player.Ai;
 import com.pazaak.player.Player;
 import com.pazaak.player.User;
 
-import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,10 +19,9 @@ public class Game {
     private boolean rules = false;
     private boolean exit = false;
     private final Scanner scanner = new Scanner(System.in); // console input
-    private GameWatcher watcher = new GameWatcher(); // replace GameWatcher. with 'watcher.'
 
     // Primary Game method
-    public void execute() {
+    public void execute() throws IOException {
         do {
             // display welcome message
             welcome();
@@ -32,112 +33,46 @@ public class Game {
                 Player computer = new Ai(generateHand());
 
                 //this while block will repeat for each set
-                while (watcher.getPlayerSetWinCount() != 2 || watcher.getAiSetWinCount() != 2) { //MATCH LOOP
-                    int playerIndex = watcher.getTurnCount();
-                    int dealerIndex = watcher.getTurnCount() + 1;
+                while (player.getWinCount() != 2 || computer.getWinCount() != 2) { //MATCH LOOP
                     boolean roundOver = false;
 
-                    //TODO: while(!roundOver){player.play() and computer.play()}
-                    Deck mainDeck = DeckFactory.createDeck("main");
-                    player.setDeck(mainDeck);
-                    computer.setDeck(mainDeck);
+                    while (!roundOver) {
+                        Deck mainDeck = DeckFactory.createDeck("main");
+                        player.setDeck(mainDeck);
+                        computer.setDeck(mainDeck);
 
-                    while (!player.isStanding()) { //Player turn
-                        if (player.getCardValue() < 20) {
-                            player.drawCard(playerIndex);
-                            System.out.println("You're current card total is: " + player.getCardValue());
-
-                            boolean validInput = false;
-                            while (!validInput) {
-                                System.out.println("What you would like to do?\n" +
-                                        "1. Stand\n" +
-                                        "2. Skip Turn\n" +
-                                        "3. Play a Side Card\n" +
-                                        "Enter a number: ");
-                                String input = scanner.nextLine().trim();
-                                switch (input) {
-                                    case "1":
-                                        player.stand();
-                                        validInput = true;
-                                        break;
-                                    case "2":
-                                        validInput = true;
-                                        break;
-                                    case "3":
-                                        player.playSideCard();
-                                        validInput = true;
-                                        break;
-                                    default:
-                                        System.out.println(input + " is an invalid choice.");
-                                }
-                            }
+                        //Player turn
+                        if (!player.isStanding() && !player.isBusted() && player.getCardCount() < 9) {
+                            player.play();
                         } else if (player.getCardValue() > 20) {
                             computer.stand();
                         }
-                    }
 
-                    while (!computer.isStanding()) { //AI turn
-                        //TODO: convert to method?
-                        computer.drawCard(dealerIndex); // draws card based on turn
-                        int input = computer.getChoice();
-                        switch (input) {
-                            case 1:
-                                computer.stand();
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                computer.playSideCard();
-                                break;
+                        // AI turn
+                        if (!computer.isStanding() && !computer.isBusted() && computer.getCardCount() < 9) {
+                            computer.play();
+                        } else {
+                            computer.stand();
                         }
-                    } else{
-                        computer.stand();
                     }
+                    determineWinner(player, computer);
+                    player.reset();
                 }
-
-
-                //End of turn counter actions
-                GameWatcher.setTurnCount(+1);
-                playerIndex += 1;
-                dealerIndex += 1;
-
-                // Block to assign set wins
-
             }
-        }
-        if (GameWatcher.getPlayerSetWinCount() == 2) {
-            System.out.println("You won the match!");
-        } else if (GameWatcher.getAiSetWinCount() == 2) {
-            System.out.println("You have lost the match.");
-        }
 
-        // Rule display
-        if (rules) {
-            displayRules();
-        }
+            // Rule display
+            if (rules) {
+                displayRules();
+            }
 
-        resetWelcome();
-    } while(!exit);
+            resetWelcome();
+        } while (!exit);
         System.out.println("The game will now exit. Thanks for playing!");
-}
+    }
 
     // Game Methods
-    private void displayRules() {
-        //TODO: Files.readString(Path.of(data/Rules.txt))
-        try (BufferedReader br = new BufferedReader(new FileReader("data/Rules.txt"))) {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
-            }
-            String everything = sb.toString();
-            System.out.println(everything);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void displayRules() throws IOException {
+        String rules = Files.readString(Path.of("data/Rules.txt"));
         System.out.println(); // add buffer space to cmd output
     }
 
@@ -188,13 +123,16 @@ public class Game {
     private Player determineWinner(Player p1, Player p2) {
         if (p1.isBusted()) {
             p2.win();
+            return p2;
         } else if (p2.isBusted()) {
             p1.win();
+            return p1;
         } else if (p1.getCardValue() > p2.getCardValue()) {
             p1.win();
+            return p1;
         } else {
             p2.win();
+            return p2;
         }
-        GameWatcher.setReset();
     }
 }
