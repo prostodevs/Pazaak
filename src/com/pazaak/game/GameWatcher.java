@@ -8,6 +8,8 @@ public class GameWatcher {
     private static int playerCardValue = 0;
     private static int dealerCardValue = 0;
     private static int turnCount = 0;
+    private static int playerCardCount = 0;
+    private static int dealerCardCount = 0;
 
 
     // constructors
@@ -55,9 +57,27 @@ public class GameWatcher {
         GameWatcher.turnCount = turnCount;
     }
 
+    public static int getPlayerCardCount() {
+        return playerCardCount;
+    }
+
+    public static void setPlayerCardCount(int playerCardCount) {
+        GameWatcher.playerCardCount = playerCardCount;
+    }
+
+    public static int getDealerCardCount() {
+        return dealerCardCount;
+    }
+
+    public static void setDealerCardCount(int dealerCardCount) {
+        GameWatcher.dealerCardCount = dealerCardCount;
+    }
+
     public static void setReset() {
         setTurnCount(0);
         setPlayerCardValue(0);
+        setPlayerCardCount(0);
         setDealerCardValue(0);
+        setDealerCardCount(0);
     }
 }
