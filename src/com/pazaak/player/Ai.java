@@ -2,7 +2,6 @@ package com.pazaak.player;
 
 import com.pazaak.deck.Card;
 
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,15 +21,15 @@ public class Ai<CardValues> extends Player {
 
         if (isBusted()) {
             stand();
-        } else if (getCardValue() <= 0) {
-            playSideCard();
-        } else (getCardValue() <= 13 || getCardValue() <= 19) {
+        } else if (getCardValue() <= 13) {
+            System.out.println();
+        } else if (getCardValue() > 13 && getCardValue() <= 19) {
             playSideCard();
         }
     }
 
-        @Override
+    @Override
     public void playSideCard() {
-        }
+
     }
 }
