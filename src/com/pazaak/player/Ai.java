@@ -13,6 +13,7 @@ public class Ai<CardValues> extends Player {
         super(hand);
     }
 
+
     // Methods
     public void play(String... option) {
         Scanner scanner = new Scanner(System.in);
@@ -29,5 +30,6 @@ public class Ai<CardValues> extends Player {
 
     @Override
     public void playSideCard() {
+
     }
 }

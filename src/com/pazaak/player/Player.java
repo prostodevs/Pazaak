@@ -41,7 +41,7 @@ public abstract class Player {
         return winCount;
     }
 
-    public static int getCardValue() {
+    public int getCardValue() {
         return cardValue;
     }
 

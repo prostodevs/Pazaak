@@ -4,6 +4,7 @@ import com.pazaak.deck.Card;
 
 
 import java.util.List;
+import java.util.Scanner;
 
 public class User extends Player {
 
@@ -18,7 +19,7 @@ public class User extends Player {
         Scanner scanner = new Scanner(System.in);
         drawCard();
         System.out.println("Your current card total is: " + getCardValue());
-        System.out.println("Your hand card options are: " + getHand());
+        System.out.println("Your hand card options are: " + getHand().stream().sequential());
 
         boolean validInput = false;
         while (!validInput) {
