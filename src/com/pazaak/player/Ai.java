@@ -25,11 +25,14 @@ public class Ai extends Player {
         if (GameWatcher.getDealerCardValue() <= 13) {
             choice = 2;
             System.out.println("Skip");
-        } else if (GameWatcher.getDealerCardValue() <= 14 && GameWatcher.getDealerCardValue() < 18) {
+        } else if (GameWatcher.getDealerCardValue() > 14 && GameWatcher.getDealerCardValue() < 20) {
             // for each loop that will iterate through the 4 cards to determine value
             sideCards = new ArrayList<CardValues>();
 
             for (CardValues sideCard : sideCards) {
+                if (sideCards < 20){
+                    playSideCard();
+                }
 
             }
 
