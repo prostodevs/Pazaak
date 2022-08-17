@@ -1,25 +1,23 @@
 package com.pazaak.player;
 
-import com.pazaak.deck.CardValues;
-import com.pazaak.deck.MainDeck;
+import com.pazaak.deck.Card;
+import com.pazaak.deck.Deck;
+
+import java.util.List;
 
 public class User extends Player {
 
     //Methods
-    @Override
-    public int drawCard(int index) {
-        int cardValue = MainDeck.getCards().indexOf(index);
-
-        return cardValue;
+//TODO: add play() method
+//ctor
+    public User(List<Card> hand) {
+        super(hand);
     }
 
     @Override
-    public void playSideCard() {
-        super.playSideCard();
+    public void playSideCard() { //play the card they want
+
     }
 
-    @Override
-    public boolean stand(boolean stand) {
-        return stand;
-    }
+
 }

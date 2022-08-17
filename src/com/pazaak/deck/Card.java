@@ -1,18 +1,17 @@
 package com.pazaak.deck;
 
-public abstract class Card {
+public class Card {
 
     //fields
-    public CardValues cards;
+    private CardValue cardValue;
 
-    public int handCardMin = 1;
-    public int handCardMax = 6;
 
-        //ctor
-    public Card(CardValues card) {
-        this.cards = card;
+    //ctor
+    public Card(CardValue cardValue) {
+        this.cardValue = cardValue;
     }
 
-
-
+    public int getValue() {
+        return cardValue.value();
+    }
 }

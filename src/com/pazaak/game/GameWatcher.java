@@ -1,15 +1,15 @@
 package com.pazaak.game;
 
 public class GameWatcher {
-
+    // TODO: change to non-all static class (remove static everywhere)
     // static fields that will be shared with other classes within the com.pazaak.game package
-    private static int playerSetWinCount = 0;
-    private static int dealerSetWinCount = 0;
-    private static int playerCardValue = 0;
-    private static int dealerCardValue = 0;
-    private static int turnCount = 0;
-    private static int playerCardCount = 0;
-    private static int dealerCardCount = 0;
+    private int playerSetWinCount = 0;
+    private int aiSetWinCount = 0;
+    private int playerCardValue = 0;
+    private int aiCardValue = 0;
+    private int turnCount = 0;
+    private int playerCardCount = 0;
+    private int aiCardCount = 0;
 
 
     // constructors
@@ -17,67 +17,67 @@ public class GameWatcher {
     }
 
     // getters/setters
-    public static int getPlayerCardValue() {
+    public int getPlayerCardValue() {
         return playerCardValue;
     }
 
-    public static void setPlayerCardValue(int playerCardValue) {
-        GameWatcher.playerCardValue = playerCardValue;
+    public void setPlayerCardValue(int playerCardValue) {
+        this.playerCardValue = playerCardValue;
     }
 
-    public static int getDealerCardValue() {
-        return dealerCardValue;
+    public int getAiCardValue() {
+        return aiCardValue;
     }
 
-    public static void setDealerCardValue(int dealerCardValue) {
-        GameWatcher.dealerCardValue = dealerCardValue;
+    public void setAiCardValue(int aiCardValue) {
+        this.aiCardValue = aiCardValue;
     }
 
-    public static int getPlayerSetWinCount() {
+    public int getPlayerSetWinCount() {
         return playerSetWinCount;
     }
 
-    public static void setPlayerSetWinCount(int playerSetWinCount) {
-        GameWatcher.playerSetWinCount = playerSetWinCount;
+    public void setPlayerSetWinCount(int playerSetWinCount) {
+        this.playerSetWinCount = playerSetWinCount;
     }
 
-    public static int getDealerSetWinCount() {
-        return dealerSetWinCount;
+    public int getAiSetWinCount() {
+        return aiSetWinCount;
     }
 
-    public static void setDealerSetWinCount(int dealerSetWinCount) {
-        GameWatcher.dealerSetWinCount = dealerSetWinCount;
+    public void setAiSetWinCount(int aiSetWinCount) {
+        this.aiSetWinCount = aiSetWinCount;
     }
 
-    public static int getTurnCount() {
+    public int getTurnCount() {
         return turnCount;
     }
 
-    public static void setTurnCount(int turnCount) {
-        GameWatcher.turnCount = turnCount;
+    public void setTurnCount(int turnCount) {
+        this.turnCount = turnCount;
     }
 
-    public static int getPlayerCardCount() {
+    public int getPlayerCardCount() {
         return playerCardCount;
     }
 
-    public static void setPlayerCardCount(int playerCardCount) {
-        GameWatcher.playerCardCount = playerCardCount;
+    public void setPlayerCardCount(int playerCardCount) {
+        this.playerCardCount = playerCardCount;
     }
 
-    public static int getDealerCardCount() {
-        return dealerCardCount;
+    public int getAiCardCount() {
+        return aiCardCount;
     }
 
-    public static void setDealerCardCount(int dealerCardCount) {
-        GameWatcher.dealerCardCount = dealerCardCount;
+    public void setAiCardCount(int aiCardCount) {
+        this.aiCardCount = aiCardCount;
     }
 
-    public static void setReset() {
+    public void setReset() {
         setTurnCount(0);
         setPlayerCardValue(0);
         setPlayerCardCount(0);
-        setDealerCardValue(0);
-        setDealerCardCount(0);
+        setAiCardValue(0);
+        setAiCardCount(0);
     }
 }

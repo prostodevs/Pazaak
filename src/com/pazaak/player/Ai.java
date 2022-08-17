@@ -1,9 +1,8 @@
 package com.pazaak.player;
 
-import com.pazaak.deck.CardValues;
-
-import com.pazaak.deck.MainDeck;
-import com.pazaak.game.GameWatcher;
+import com.pazaak.deck.Card;
+import com.pazaak.deck.CardValue;
+import com.pazaak.deck.Deck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +12,27 @@ public class Ai extends Player {
 
 
     // Fields
-    private CardValues sideDeck;
+    private CardValue sideDeck;
     private int choice;
     private boolean playerStand = false;
     private boolean dealerStand = false;
-    List<CardValues> sideCards;
 
+
+    public Ai(List<Card> hand) {
+        super(hand);
+    }
 
     // Methods
     public int getChoice() {
-        if (GameWatcher.getDealerCardValue() <= 13) {
+        if (getCardValue() <= 13) {
             choice = 2;
             System.out.println("Skip");
-        } else if (GameWatcher.getDealerCardValue() > 14 && GameWatcher.getDealerCardValue() < 20) {
+        } else if (getCardValue() > 14 && getCardValue() < 20) {
             // for each loop that will iterate through the 4 cards to determine value
-            sideCards = new ArrayList<CardValues>();
+            sideCards = new ArrayList<CardValue>();
 
-            for (CardValues sideCard : sideCards) {
-                if (sideCards < 20){
+            for (CardValue sideCard : sideCards) {
+                if (sideCards < 20) {
                     playSideCard();
                 }
 
@@ -51,23 +53,8 @@ public class Ai extends Player {
         return 0;
     }
 
-
-    @Override
-    public int drawCard(int index) {
-        int cardValue = MainDeck.getCards().indexOf(index);
-
-        return cardValue;
-    }
-
         @Override
     public void playSideCard() {
-        super.playSideCard();
-    }
 
-
-    // set stand method to false
-    @Override
-    public boolean stand(boolean stand) {
-        return stand;
-    }
+        }
 }

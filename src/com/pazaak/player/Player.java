@@ -1,24 +1,65 @@
 package com.pazaak.player;
 
 
-public class Player {
+import com.pazaak.deck.Card;
+import com.pazaak.deck.Deck;
 
+import java.util.ArrayList;
+import java.util.List;
 
-    //Methods
-    public int drawCard(int index) {
-        int cardValue = 0;
+public abstract class Player {
+    private boolean isStanding = false;
+    private int cardValue;
+    private int cardCount;
+    private int winCount;
+    private Deck mainDeck;
+    private List<Card> hand;
 
-        //TODO: draw card from Deck
+    //ctor
+    public Player(List<Card> hand) {
+        this.hand = hand;
+    }
+
+    public abstract void play(String... option);
+
+    public void win() {
+        winCount++;
+    }
+
+    public void reset() {
+        cardValue = 0;
+        cardCount = 0;
+    }
+
+    public boolean isBusted() {
+        return getCardValue() > 20;
+    }
+
+    public int getWinCount() {
+        return winCount;
+    }
+
+    public int getCardValue() {
         return cardValue;
     }
 
-    public void playSideCard() {
-        //TODO: play card from side deck
-
+    //Methods
+    public void drawCard(int index) {
+        this.cardValue += mainDeck.draw().getValue();
+        cardCount++;
     }
 
-    public boolean stand(boolean a) {
-        //TODO: commit to current cardValue count. no more plays
-        return a;
+    public abstract void playSideCard(); //delegate to Ai/User
+
+    public void stand() {
+        isStanding = true;
+    }
+
+    public boolean isStanding() {
+        return isStanding;
+    }
+
+    public void setDeck(Deck mainDeck) {
+        this.mainDeck = mainDeck;
     }
 }
