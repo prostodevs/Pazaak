@@ -4,7 +4,10 @@ package com.pazaak.player;
 import com.pazaak.deck.Card;
 import com.pazaak.deck.Deck;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public abstract class Player {
     private boolean isStanding = false;
@@ -20,7 +23,7 @@ public abstract class Player {
     }
 
     public List<Card> getHand() {
-        return hand;
+        return this.hand;
     }
 
     public abstract void play(String... option);

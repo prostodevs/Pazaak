@@ -17,9 +17,10 @@ public class User extends Player {
     //Methods
     public void play(String... option) {
         Scanner scanner = new Scanner(System.in);
+
         drawCard();
         System.out.println("Your current card total is: " + getCardValue());
-        System.out.println("Your hand card options are: " + getHand().stream().sequential());
+        System.out.println("Your hand card options are: " + getHand().toString());
 
         boolean validInput = false;
         while (!validInput) {
