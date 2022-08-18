@@ -4,10 +4,7 @@ package com.pazaak.player;
 import com.pazaak.deck.Card;
 import com.pazaak.deck.Deck;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public abstract class Player {
     private boolean isStanding = false;
@@ -28,10 +25,6 @@ public abstract class Player {
 
     public abstract void play(String... option);
 
-    public void win() {
-        winCount++;
-    }
-
     public int getCardCount() {
         return cardCount;
     }
@@ -40,12 +33,20 @@ public abstract class Player {
         return getCardValue() > 20;
     }
 
+    public void win() {
+        winCount++;
+    }
+
     public int getWinCount() {
         return winCount;
     }
 
     public int getCardValue() {
         return cardValue;
+    }
+
+    public void setCardValue(int cardValue) {
+        this.cardValue = cardValue;
     }
 
     public void drawCard() {
@@ -70,5 +71,6 @@ public abstract class Player {
     public void reset() {
         cardValue = 0;
         cardCount = 0;
+        isStanding = false;
     }
 }

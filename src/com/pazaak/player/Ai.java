@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class Ai<CardValues> extends Player {
+public class Ai extends Player {
 
     // Constructor
     public Ai(List<Card> hand) {
@@ -17,14 +17,17 @@ public class Ai<CardValues> extends Player {
     // Methods
     public void play(String... option) {
         Scanner scanner = new Scanner(System.in);
-        drawCard();
 
         if (isBusted()) {
             stand();
         } else if (getCardValue() <= 13) {
-            System.out.println();
-        } else if (getCardValue() > 13 && getCardValue() <= 19) {
+            System.out.println("(1)Computer total is: " + getCardValue() + "\n");
+        } else if (getCardValue() > 13 && getCardValue() <= 18) {
             playSideCard();
+            System.out.println("(2)Computer total is: " + getCardValue() + "\n");
+        } else if (getCardValue() > 18) {
+            stand();
+            System.out.println("(3)Computer total is: " + getCardValue() + "\n");
         }
     }
 
