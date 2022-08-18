@@ -14,4 +14,9 @@ public class Card {
     public int getValue() {
         return cardValue.value();
     }
+
+    @Override
+    public String toString() {
+        return " " + getValue() + " "; // [ 3 ], [ 5 ]
+    }
 }

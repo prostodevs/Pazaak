@@ -43,16 +43,18 @@ public class Game {
 
                         //Player turn
 
-                        if (!player.isStanding() && player.getCardCount() < 9) {
-                            //System.out.printf("Your current hand options are: %s%n", player.getHand());
+                        if (player.getCardTotal() == 20) {
+                            player.stand();
+                        } else if (!player.isStanding() && player.getCardCount() < 9) {
                             player.drawCard();
-                            player.play(player.getHand().toString());
+                            // TODO: add prompt code here - feed to String... option below
+                            player.play();
                         }
 
                         // Computer turn
                         if (player.isBusted()) {
                             computer.stand();
-                        } else if (player.isStanding() && computer.getCardValue() > player.getCardValue()) {
+                        } else if (player.isStanding() && computer.getCardTotal() > player.getCardTotal()) {
                             computer.stand();
                         } else if (!computer.isStanding() && computer.getCardCount() < 9) {
                             computer.drawCard();
@@ -60,27 +62,26 @@ public class Game {
                         }
 
                         System.out.printf("End of turn totals are:\nPlayer: %s, Computer: %s\n",
-                                player.getCardValue(), computer.getCardValue());
+                                player.getCardTotal(), computer.getCardTotal());
                         System.out.println();
 
                         // Evaluate if round is over
                         if (player.isBusted()) {
                             roundOver = true;
-                            player.reset();
-                            computer.reset();
                         } else if (computer.isBusted()) {
                             roundOver = true;
-                            player.reset();
-                            computer.reset();
                         } else if (player.isStanding() && computer.isStanding()) {
                             roundOver = true;
-                            player.reset();
-                            computer.reset();
                         }
                     }
-                    determineWinner(player, computer);
+                    Player winner = determineWinner(player, computer);
+                    winner.win();
+                    String message = (winner == player) ? "You won the round!" : "You lost the round.";
                     System.out.printf("Current round scores are:\nPlayer: %s, Computer %s%n",
                             player.getWinCount(), computer.getWinCount());
+                    System.out.println("----------------------------------");
+                    player.reset();
+                    computer.reset();
                 }
                 continuePlaying(); //ask to play again
             }
@@ -154,23 +155,19 @@ public class Game {
     }
 
     private Player determineWinner(Player p1, Player p2) {
-        if (p1.isBusted()) {
-            p2.win();
-            System.out.println("You lost the round.");
-            return p2;
-        } else if (p2.isBusted()) {
-            p1.win();
-            System.out.println("You won the round!");
-            return p1;
-        } else if (p1.getCardValue() > p2.getCardValue()) {
-            p1.win();
-            System.out.println("You won the round!");
-            return p1;
+        Player winner = null;
+        if (p1.isBusted() && !p2.isBusted()) {
+            winner = p2;
+        } else if (p2.isBusted() && !p1.isBusted()) {
+            winner = p1;
+        } else if (p1.getCardTotal() == 20 && p2.isBusted()) {
+            winner = p1;
+        } else if (!p1.isBusted() && !p2.isBusted() && p1.getCardTotal() > p2.getCardTotal()) {
+            winner = p1;
         } else {
-            p2.win();
-            System.out.println("You lost the round.");
-            return p2;
+            winner = p2;
         }
+        return winner;
     }
 
     private void continuePlaying() {

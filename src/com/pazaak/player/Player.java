@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class Player {
     private boolean isStanding = false;
-    private int cardValue;
+    private int cardTotal;
     private int cardCount;
     private int winCount;
     private Deck mainDeck;
@@ -23,14 +23,14 @@ public abstract class Player {
         return this.hand;
     }
 
-    public abstract void play(String... option);
+    public abstract void play();
 
     public int getCardCount() {
         return cardCount;
     }
 
     public boolean isBusted() {
-        return getCardValue() > 20;
+        return getCardTotal() > 20;
     }
 
     public void win() {
@@ -41,16 +41,16 @@ public abstract class Player {
         return winCount;
     }
 
-    public int getCardValue() {
-        return cardValue;
+    public int getCardTotal() {
+        return cardTotal;
     }
 
-    public void setCardValue(int cardValue) {
-        this.cardValue = cardValue;
+    public void setCardTotal(int cardTotal) {
+        this.cardTotal = cardTotal;
     }
 
     public void drawCard() {
-        this.cardValue += mainDeck.draw().getValue();
+        this.cardTotal += mainDeck.draw().getValue();
         cardCount++;
     }
 
@@ -69,7 +69,7 @@ public abstract class Player {
     }
 
     public void reset() {
-        cardValue = 0;
+        cardTotal = 0;
         cardCount = 0;
         isStanding = false;
     }
