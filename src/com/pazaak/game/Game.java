@@ -108,7 +108,7 @@ public class Game {
     // Game Methods
     private void displayRules() {
         try {
-            List<String> lines = Files.readAllLines(Path.of("data/Rules.txt"));
+            List<String> lines = Files.readAllLines(Path.of("Pazaak/data/Rules.txt"));
             for (String line : lines) {
                 System.out.println(line);
             }
