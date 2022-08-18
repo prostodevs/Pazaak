@@ -6,18 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class Ai extends Player {
+public class Computer extends Player {
 
     // Constructor
-    public Ai(List<Card> hand) {
+    public Computer(List<Card> hand) {
         super(hand);
     }
 
 
     // Methods
     public void play() {
-        Scanner scanner = new Scanner(System.in);
-
+        System.out.println(this.getClass().getSimpleName() + "'s turn");
         if (isBusted()) {
             stand();
         } else if (getCardTotal() <= 13) {

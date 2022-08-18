@@ -3,7 +3,7 @@ package com.pazaak.game;
 import com.pazaak.deck.Card;
 import com.pazaak.deck.Deck;
 import com.pazaak.deck.DeckFactory;
-import com.pazaak.player.Ai;
+import com.pazaak.player.Computer;
 import com.pazaak.player.Player;
 import com.pazaak.player.User;
 
@@ -24,15 +24,16 @@ public class Game {
     public void execute() {
         System.out.println("WELCOME TO PAZAAK" +
                 "\n=========================================");
+
         do {
-            // display welcome message
+            // display main menu
             mainMenu();
 
             // Game flow controller
             if (play) {
                 System.out.println(); //play loop buffer
                 Player player = new User(generateHand());
-                Player computer = new Ai(generateHand());
+                Player computer = new Computer(generateHand());
 
                 while (player.getWinCount() != 2 && computer.getWinCount() != 2) { //MATCH LOOP
                     boolean roundOver = false;
@@ -99,7 +100,6 @@ public class Game {
                 System.out.println(); //selection buffer row
                 displayRules();
             }
-
             resetWelcome();
         } while (!exit);
         System.out.println("\nThe game will now exit.");
@@ -119,7 +119,8 @@ public class Game {
     }
 
     private void mainMenu() {
-        System.out.println("What would you like to do?" +
+        System.out.println("Pazaak Menu" +
+                "\nWhat would you like to do?" +
                 "\n1. Play" +
                 "\n2. Read the Rules" +
                 "\n3. Exit");
@@ -186,7 +187,9 @@ public class Game {
             String input = scanner.nextLine().trim().toUpperCase();
             if (input.matches("Y|N")) {  //
                 if ("N".equals(input)) {
-                    System.out.println("Thanks for playing!!");
+                    resetWelcome();
+                    System.out.println("Thanks for playing!!" +
+                            "\n=========================================");
                 } else {
                     System.out.println();
                 }
