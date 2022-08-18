@@ -22,9 +22,11 @@ public class Game {
 
     // Primary Game method
     public void execute() {
+        System.out.println("WELCOME TO PAZAAK" +
+                "\n=========================================");
         do {
             // display welcome message
-            welcome();
+            mainMenu();
 
             // Game flow controller
             if (play) {
@@ -35,7 +37,8 @@ public class Game {
                 while (player.getWinCount() != 2 && computer.getWinCount() != 2) { //MATCH LOOP
                     boolean roundOver = false;
 
-                    System.out.println("New set!!!");
+                    System.out.println("New set!!!" +
+                            "\n----------------------------------");
                     while (!roundOver) { // ROUND LOOP
                         Deck mainDeck = DeckFactory.createDeck("main");
                         player.setDeck(mainDeck);
@@ -76,12 +79,17 @@ public class Game {
                     }
                     Player winner = determineWinner(player, computer);
                     winner.win();
-                    String message = (winner == player) ? "You won the round!" : "You lost the round.";
+                    String setMessage = (winner == player) ? "You won the round!" : "You lost the round.";
                     System.out.printf("Current round scores are:\nPlayer: %s, Computer %s%n",
                             player.getWinCount(), computer.getWinCount());
                     System.out.println("----------------------------------");
                     player.reset();
                     computer.reset();
+                }
+                if (player.getWinCount() == 2) {
+                    System.out.println("Pazaaka! You just won the match!!!!");
+                } else {
+                    System.out.println("Sorry Pazaaka, you might need to read the rules again....");
                 }
                 continuePlaying(); //ask to play again
             }
@@ -110,8 +118,8 @@ public class Game {
         }
     }
 
-    private void welcome() {
-        System.out.println("Welcome to Pazaak!!\nWhat would you like to do?" +
+    private void mainMenu() {
+        System.out.println("What would you like to do?" +
                 "\n1. Play" +
                 "\n2. Read the Rules" +
                 "\n3. Exit");
@@ -174,11 +182,10 @@ public class Game {
         boolean validInput = false;
 
         while (!validInput) {
-            System.out.print("Do you want to play again? Y or N");
+            System.out.print("Do you want to play again? Y or N\n");
             String input = scanner.nextLine().trim().toUpperCase();
             if (input.matches("Y|N")) {  //
                 if ("N".equals(input)) {
-                    exit = true;
                     System.out.println("Thanks for playing!!");
                 } else {
                     System.out.println();

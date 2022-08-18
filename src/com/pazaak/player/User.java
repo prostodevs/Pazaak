@@ -22,7 +22,7 @@ public class User extends Player {
 
         boolean validInput = false;
         while (!validInput) {
-            System.out.println("What you would like to do?\n" +
+            System.out.println("What would you like to do?\n" +
                     "1. Stand\n" +
                     "2. Skip Turn\n" +
                     "3. Play a Side Card\n" +
@@ -41,7 +41,7 @@ public class User extends Player {
                     validInput = true;
                     break;
                 default:
-                    System.out.println(input + " is an invalid choice.");
+                    System.out.println(input + " is an invalid choice, please try again.");
             }
         }
     }
@@ -51,7 +51,7 @@ public class User extends Player {
         Scanner scanner = new Scanner(System.in);
         boolean validInput = false;
 
-        System.out.println("What card do you want to play?\n" +
+        System.out.println("What card would you like to play?\n" +
                 "Enter the card number by position (example: [1, 2, 3, 4]):\n");
         System.out.println(getHand());
 
@@ -91,7 +91,7 @@ public class User extends Player {
         validInput = false;
         while (!validInput) {
             System.out.print("New card total is: " + getCardTotal() +
-                    "\nWhat you would like to do?\n" +
+                    "\nWhat would you like to do?\n" +
                     "1. Stand\n" +
                     "2. Skip Turn\n" +
                     "Enter a number: ");

@@ -21,13 +21,13 @@ public class Ai extends Player {
         if (isBusted()) {
             stand();
         } else if (getCardTotal() <= 13) {
-            System.out.println("(1)Computer total is: " + getCardTotal() + "\n");
+            System.out.println();
         } else if (getCardTotal() > 13 && getCardTotal() <= 18) {
             playSideCard();
-            System.out.println("(2)Computer total is: " + getCardTotal() + "\n");
+            System.out.println();
         } else if (getCardTotal() > 18) {
             stand();
-            System.out.println("(3)Computer total is: " + getCardTotal() + "\n");
+            System.out.println();
         }
     }
 
