@@ -1,11 +1,11 @@
-package com.pazaak.game;
+package com.game;
 
-import com.pazaak.deck.Card;
-import com.pazaak.deck.Deck;
-import com.pazaak.deck.DeckFactory;
-import com.pazaak.player.Computer;
-import com.pazaak.player.Player;
-import com.pazaak.player.User;
+import com.deck.Card;
+import com.deck.Deck;
+import com.deck.DeckFactory;
+import com.player.Computer;
+import com.player.Player;
+import com.player.User;
 
 import java.io.IOException;
 import java.nio.file.Files;

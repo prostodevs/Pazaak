@@ -1,6 +1,6 @@
-package com.pazaak.player;
+package com.player;
 
-import com.pazaak.deck.Card;
+import com.deck.Card;
 
 import java.util.List;
 import java.util.Scanner;

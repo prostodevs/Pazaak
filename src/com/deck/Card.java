@@ -1,4 +1,4 @@
-package com.pazaak.deck;
+package com.deck;
 
 public class Card {
 
