@@ -1,4 +1,4 @@
-package com.pazaak.deck;
+package com.deck;
 
 import java.util.EnumSet;
 import java.util.Set;

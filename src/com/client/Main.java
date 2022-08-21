@@ -1,6 +1,6 @@
-package com.pazaak.client;
+package com.client;
 
-import com.pazaak.game.Game;
+import com.game.Game;
 
 import java.io.IOException;
 
