@@ -3,6 +3,7 @@ package com.game;
 import com.deck.Card;
 import com.deck.Deck;
 import com.deck.DeckFactory;
+import com.gui.TitleScreen;
 import com.player.Computer;
 import com.player.Player;
 import com.player.User;
@@ -26,6 +27,10 @@ public class Game {
                 "\n=========================================");
 
         do {
+            //display GUI
+            new TitleScreen();
+
+
             // display main menu
             mainMenu();
 
